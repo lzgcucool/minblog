@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ subtitle }}{{ website_title }}</title>{% load staticfiles %}
+    <link href="{% static "minblog/css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "minblog/css/minblog.css" %}" rel="stylesheet">
+  </head>
+  <body class="bg">
+    <div class="container">
+      <div class="masthead clearfix">
+        <div class="inner">
+          <h3 class="masthead-brand">Cucole.L</h3>
+          <ul class="nav masthead-nav">
+            <li><a href="/">Home</a></li><!--  class="active" -->
+            <li><a href="/about/">About</a></li>
+          </ul>
+        </div>
+      </div>  
+      <div class="container-fluid cf_main">{% block "main_content" %}{% endblock %}</div>
+    </div>
+    <div class="bg-fixed"></div>
+    <script src="{% static "minblog/js/jquery.min.js" %}"></script>
+    <script src="{% static "minblog/js/bootstrap.min.js" %}"></script>
+  </body>
+</html>

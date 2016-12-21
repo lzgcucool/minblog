@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block "main_content" %}
+        <div class="post-details">
+          <h2 class="title text-center"><a href="">{{ post_detail.title }}</a></h2>
+          <div class="content">
+            <article>
+                {{ post_detail.content|safe }}
+            </article>
+          </div>
+          <hr />
+          <p class="post-meta text-left">
+            发表于：{{ post_detail.pubtime|date:"Y年m月d日" }}，Tags by {% for tags in post_detail.posttags.all %}<a href="{% url "tags" tags.name %}">{{ tags.name }}</a>{% endfor %}<br />
+            当前连接：http://{{ request.get_host }}{{ request.path }}，转载请联系作者获得授权。
+          </p>
+        </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block "main_content" %}
+        <div class="col-md-9">
+          <div class="post-list">
+          {% if isindex %}
+          <h5><strong>Latest New Psot</strong></h5>
+          {% elif istag %}
+          <h5><strong>标签：{{ tagname }}</strong></h5>
+          {% elif isarch %}
+          <h5><strong>归档：{{ archtime }}</strong></h5>
+          {% endif %}
+            <ul class="list-style">
+                {% for post in post_list %}
+                <li><a href="{% url 'post_detail' post.link %}">{{ post.title }}</a></li>
+                {% endfor %}
+           </ul>
+          </div>
+          <ul class="pager">
+              {% if page_obj.has_previous %}
+              <li><a href="{{ request.path }}?&page={{ page_obj.previous_page_number }}">上一页</a></li>
+              {% endif %}
+              {% if page_obj.has_next %}
+              <li><a href="{{ request.path }}?page={{ page_obj.next_page_number }}">翻页</a></li>
+              {% endif %}
+          </ul>
+        </div>
+{% include "side.html" %}
+{% endblock %}
