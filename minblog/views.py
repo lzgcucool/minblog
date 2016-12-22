@@ -1,10 +1,13 @@
 # *-* coding:utf-8 *-*
 # file: views.py
+import sys
 import markdown2
 from django.views.generic import TemplateView, ListView, DetailView
 from django.conf import settings
 from django.http import Http404
 from .models import Post, PostTags
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 
 class BaseMixin(object):
