@@ -1,3 +1,4 @@
+#-*-coding:utf-8 -*-
 """
 Django settings for minblog project.
 
@@ -17,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
-SITE_TITLE = "Cucole.L's Blog|程序员生活小站"
+SITE_TITLE = u"Cucole.L's Blog|程序员生活小站"
 PAGE_NUM = 21
 
 
@@ -30,7 +31,9 @@ SECRET_KEY = 'ix0yen+or6kcr4t_zmdu!_y7h%i^xjzimmc+*-*x&tnc_i0flr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'minblog.web.com',
+]
 
 
 # Application definition
@@ -43,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'minblog',
+    'gunicorn',
 ]
 
 MIDDLEWARE = [

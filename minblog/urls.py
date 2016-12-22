@@ -22,5 +22,5 @@ urlpatterns = [
    url(r'^tag_(?P<tag>\w+)/$', IndexView.as_view(), name='tags'),
    url(r'^arch_(?P<arch_year>\d+)-(?P<arch_month>\d+)/$', IndexView.as_view(), name='arch_date'),
    url(r'^about/', AboutView.as_view(), name='about'),
-   url(r'^(?P<slug>\w+)/$', PostDetail.as_view(), name='post_detail'),
+   url(r'^(?P<slug>[\w\-]+)/$', PostDetail.as_view(), name="post_detail"), # url march do not support '-' str
 ]

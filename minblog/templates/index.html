@@ -11,7 +11,7 @@
           {% endif %}
             <ul class="list-style">
                 {% for post in post_list %}
-                <li><a href="{% url 'post_detail' post.link %}">{{ post.title }}</a></li>
+                <li><a href="{% url "post_detail" post.link %}">{{ post.title }}</a></li>
                 {% endfor %}
            </ul>
           </div>

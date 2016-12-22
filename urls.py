@@ -21,5 +21,5 @@ from django.views.static import serve
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^static/(?P<path>.*)$', serve, { 'document_root': settings.STATIC_URL }),
-	url(r'', include("minblog.urls")),
+    url(r'^', include("minblog.urls")),
 ]# + static.static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
