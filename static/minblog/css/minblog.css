@@ -35,3 +35,4 @@
 .post-details .content pre {border: none;margin-top: 20px;margin-bottom: 20px;padding-top: 20px;padding-bottom: 20px;padding-left: 40px;padding-right: 40px;background: #333;font-size: 14px;font-weight: 400;font-family: Consolas, monaco, monospace;color: #fff;}
 .post-details .post-meta{margin-top: 35px;}
 .post-details .post-meta a{margin-left:5px;}
+@media (max-width: 768px) {.post-details{margin: 15px 5px;}}
