@@ -12,20 +12,20 @@ sys.setdefaultencoding('utf8')
 
 class BaseMixin(object):
 	""" public resource load object """
+        
+        subtitle = '' # second title init
+        
 	def get_context_data(self, *arg, **kwargs):
-		context = super(BaseMixin, self).get_context_data(**kwargs)
+	        context = super(BaseMixin, self).get_context_data(**kwargs)
 		context['website_title'] = settings.SITE_TITLE
 		context['tags'] = PostTags.objects.all()[:30]
 		context['date_archive'] = Post.objects.datetimes('pubtime', 'month', order='DESC')
+                context['subtitle'] = self.subtitle
 		return context
 
 class AboutView(BaseMixin, TemplateView):
 	template_name = 'about.html'
-
-	def get_context_data(self, *arg, **kwargs):
-		context = super(AboutView, self).get_context_data(**kwargs)
-		context['subtitle'] = '关于我 - '
-		return context
+        subtitle = '关于我 - '
 
 class IndexView(BaseMixin, ListView):
 	template_name = 'index.html'
@@ -56,6 +56,7 @@ class IndexView(BaseMixin, ListView):
 		else:
 			post_list = Post.objects.all()
 		return post_list
+        
 	def get_context_data(self, *arg, **kwargs):
 		context = super(IndexView, self).get_context_data(**kwargs)
 		tag, arch_year, arch_month = self.check_args()
@@ -70,7 +71,6 @@ class IndexView(BaseMixin, ListView):
 			context['isarch'] = True
 		else:
 			context['isindex'] = True
-
 		return context
 
 class PostDetail(BaseMixin, DetailView):
@@ -78,17 +78,10 @@ class PostDetail(BaseMixin, DetailView):
 	template_name = 'content.html'
 	context_object_name = 'post_detail'
 	slug_field = 'link'
+        subtitle = ''
 
 	def get_object(self, queryset=None):
 		obj = super(PostDetail, self).get_object()
 		obj.content = markdown2.markdown(obj.content, extras=['fenced-code-blocks'],)
+                self.subtitle = '%s - ' %  obj.title
 		return obj
-
-	def get(self, request, *args, **kwargs):
-		return super(PostDetail, self).get(request, *args, **kwargs)
-
-	def get_context_data(self, *arg, **kwargs):
-		context = super(PostDetail, self).get_context_data(**kwargs)
-		post_detail = self.get_object()
-		context['subtitle'] = '%s - ' %  post_detail.title
-		return context
